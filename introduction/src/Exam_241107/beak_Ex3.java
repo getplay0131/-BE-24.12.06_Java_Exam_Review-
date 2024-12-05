@@ -1,0 +1,19 @@
+//백준 - 조건문 - 윤년
+
+package Exam_241107;
+
+import java.util.Scanner;
+
+public class beak_Ex3 {
+  public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+
+      int year = scan.nextInt();
+
+      if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+      System.out.println(1);
+      } else {
+      System.out.println(0);
+      }
+  }
+}
