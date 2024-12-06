@@ -1,38 +1,39 @@
 package Exam_241206.bank.domain;
 
-import Exam_241206.bank.domain.*;
-
-public class AccountManager {
+public class AccountManagerComment {
+//    기본 변수 선언
+//  private 를 사용하여 외부 호출 차단
     private Account[] accounts = new Account[10]; // 최대 10개 계좌 관리
     private int accountCount = 0;
 
+//    외부공개 반환필요없음
     public void addAccount(Account account) {
         // 배열에 계좌 추가
 //        for (int i = 0; i < accountCount; i++) {
 //            accounts[accountCount] = account;
 //        }
         // 고려해야 할 것들:
-// 1. 배열에 추가할 때는 반복문이 필요없음 (왜냐하면 한번에 하나씩만 추가하니까)
-// 2. accountCount는 현재 저장된 계좌의 개수이자, 다음 계좌가 저장될 위치
-// 3. 배열이 꽉 찼는지 체크 필요 (accounts.length와 비교)
-
 //        =========================
-        // 1. 계좌가 추가되었다는 성공 메시지도 있으면 좋음
-// 2. 이미 동일한 계좌가 있는지 체크하는 로직도 고려
-// 3. accountCount 증가 전에 account null 체크하는게 더 안전
+// 3. 배열이 꽉 찼는지 체크 필요 (accounts.length와 비교)
         if (accountCount >= accounts.length) {
             System.out.println("등록 가능한 최대 계좌 개수에 도달하였습니다.");
             return;
         }
+// 2. 이미 동일한 계좌가 있는지 체크하는 로직도 고려
             if (accounts[accountCount] != account) {
+// 1. 배열에 추가할 때는 반복문이 필요없음 (왜냐하면 한번에 하나씩만 추가하니까)
+// 2. accountCount는 현재 저장된 계좌의 개수이자, 다음 계좌가 저장될 위치
         accounts[accountCount] = account;
+// 3. accountCount 증가 전에 account null 체크하는게 더 안전
         if (account != null) {
         accountCount++;
+        // 1. 계좌가 추가되었다는 성공 메시지도 있으면 좋음
             System.out.println("계좌 추가가 성공하였습니다.");
             }
         }
     }
 
+//    외부 공개 타입을 객체로 설정한다.
     public Account findAccount(String accountNumber) {
         // 계좌번호로 계좌 찾기
         // 주의할 점들:
@@ -68,8 +69,11 @@ public class AccountManager {
                 return null;
             }
 
+//            작업의 편의를 위해 계좌 번호를 변수에 저장
             String accountNumbers = accounts[i].getAccountNumber();
+//            조건문을 이용해 매개변수의 값이 지금 저장된 계좌번호와 일치하는지를 판단한다.
             if (accountNumber.equals(accountNumbers)) {
+//                일치할시 해당 계과 번호를 반환한다.
                 return accounts[i];
             }
         }
